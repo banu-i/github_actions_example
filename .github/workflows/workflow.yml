@@ -1,0 +1,28 @@
+name: workflow
+
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run lint
+        run: echo "Hello from lint & from ${GITHUB_REF##*/}"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: echo "Hello from test & from ${GITHUB_REF##*/}"
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run deploy
+        run: echo "Hello from deploy & from ${GITHUB_REF##*/}"

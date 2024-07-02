@@ -1,10 +1,58 @@
-name: my-workflow
-on:
+# name: my-workflow
+# on:
+#   push:
+#     branches:
+#       - develop
+#   pull_request:
+#     branches:
+#       - main
+# jobs:
+#   lint:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: "Hello from lint & from ${GITHUB_REF##*/}"
+#       - run: echo "Hallo Welt!"
+# test:
+# runs-on: ubuntu-latest
+#     steps:
+#     - name: "Hello from test & from ${GITHUB_REF##*/}"
+#       - run: echo "Hallo Welt!"
+# deploy:
+# runs-on: ubuntu-latest
+#     steps:
+#     - name: "Hello from deploy & from ${GITHUB_REF##*/}"
+#       - run: echo "Hallo Welt!"
+
+name: workflow
+
+on: 
   push:
     branches:
+      - develop
+  pull_request:
+    branches:
       - main
+
 jobs:
-  Hallo-Welt:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hallo Welt!"
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run lint
+        run: echo "Hello from lint & from ${GITHUB_REF##*/}"
+test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run tests
+        run: echo "Hello from test & from ${GITHUB_REF##*/}"
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run deploy
+        run: echo "Hello from deploy & from ${GITHUB_REF##*/}"
